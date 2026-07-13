@@ -3,6 +3,7 @@ package lk.java.jta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,10 +16,14 @@ import java.util.Objects;
 
 @WebServlet("/test")
 public class Test extends HttpServlet {
+
+    @PersistenceContext(unitName = "JTA-PU")
+    private EntityManager em;
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       EntityManager em = ManagerFactory.getEntityManager();
+//       EntityManager em = ManagerFactory.getEntityManager();
 
         List<Objects[]> resultList = em.createNativeQuery("select * from user").getResultList();
         resultList.forEach(r->{
