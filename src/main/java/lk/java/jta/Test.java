@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lk.java.jta.ejb.UserBean;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,9 @@ public class Test extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        userBean.register("Dasun", "dasun@example.com", "4562");
+//        userBean.register("Nadun", "nadun@example.com", "4562");
+
+        userBean.transfer(10020004001L,10020004002L, new BigDecimal("1000.00"));
 
     }
 }
